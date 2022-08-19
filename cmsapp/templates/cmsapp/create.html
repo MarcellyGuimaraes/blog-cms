@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+    #cke_id_texto {
+        width: 100% !important;
+    }
+
+    #container {
+        width: 50%;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        height: auto;
+        padding: 30px 20px 20px 20px;
+        border-radius: 30px;
+        margin-bottom: 20px;
+    }
+
+    #container h3 {
+        text-align: center;
+    }
+</style>
+
+<div class="container" id="container">
+    <h3><strong>Crie Um Artigo</strong></h3>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ form.media }}
+        <input type="submit" class="btn btn-primary" value="Criar Post">
+    </form>
+</div>
+
+<script>
+    let inputfields = document.getElementsByTagName('input')
+    let bodyfield = document.getElementById('id_texto')
+    let selectfield = document.getElementsById('id_select')
+
+    for (let i = 0; i < inputfields.length; i++) {
+        inputfields[i].classList.add('form-control')
+    }
+
+    bodyfield.classList.add('form-control')
+    selectfield.classList.add('form-select')
+</script>
+{% endblock %}
